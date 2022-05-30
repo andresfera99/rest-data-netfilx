@@ -20,22 +20,13 @@ public class Title {
     @NotNull(message = "Id cannot be null")
     private int id;
 
-
-    @NotEmpty(message = "show_id cannot be empty")
-    private String show_id;
-
-    @NotEmpty(message = "type cannot be empty")
-    private String type;
-
     @NotEmpty(message = "title cannot be empty")
-    private String title;
-
-    private String country;
+    private String name;
 
     private String date_added;
 
     @Range(min = 1, max = 2022, message = "release_year must be lower or equal to 2022")
-    private int release_year;
+    private String release_year;
 
     private String rating;
 
@@ -81,11 +72,8 @@ public class Title {
 
     }
 
-    public Title(String show_id, String type, String title, String country, String date_added, int release_year, String rating, String duration, String description, int num_ratings, float user_rating) {
-        this.show_id = show_id;
-        this.type = type;
-        this.title = title;
-        this.country = country;
+    public Title(String name, String date_added, String release_year, String rating, String duration, String description, int num_ratings, float user_rating) {
+        this.name = name;
         this.date_added = date_added;
         this.release_year = release_year;
         this.rating = rating;
@@ -103,57 +91,12 @@ public class Title {
         this.id = id;
     }
 
-    public String getShow_id() {
-        return show_id;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public String toString() {
-        return "Title{" +
-                "id=" + id +
-                ", show_id='" + show_id + '\'' +
-                ", type='" + type + '\'' +
-                ", title='" + title + '\'' +
-                ", country='" + country + '\'' +
-                ", date_added=" + date_added +
-                ", release_year=" + release_year +
-                ", rating='" + rating + '\'' +
-                ", duration='" + duration + '\'' +
-                ", description='" + description + '\'' +
-                ", num_ratings=" + num_ratings +
-                ", user_rating=" + user_rating +
-                ", cast=" + cast +
-                ", listed_in=" + listed_in +
-                ", directores=" + directores +
-                '}';
-    }
-
-    public void setShow_id(String show_id) {
-        this.show_id = show_id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDate_added() {
@@ -164,11 +107,11 @@ public class Title {
         this.date_added = date_added;
     }
 
-    public int getRelease_year() {
+    public String getRelease_year() {
         return release_year;
     }
 
-    public void setRelease_year(int release_year) {
+    public void setRelease_year(String release_year) {
         this.release_year = release_year;
     }
 
@@ -196,6 +139,22 @@ public class Title {
         this.description = description;
     }
 
+    public int getNum_ratings() {
+        return num_ratings;
+    }
+
+    public void setNum_ratings(int num_ratings) {
+        this.num_ratings = num_ratings;
+    }
+
+    public float getUser_rating() {
+        return user_rating;
+    }
+
+    public void setUser_rating(float user_rating) {
+        this.user_rating = user_rating;
+    }
+
     public List<Actor> getCast() {
         return cast;
     }
@@ -221,15 +180,34 @@ public class Title {
     }
 
     @Override
+    public String toString() {
+        return "Title{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date_added='" + date_added + '\'' +
+                ", release_year='" + release_year + '\'' +
+                ", rating='" + rating + '\'' +
+                ", duration='" + duration + '\'' +
+                ", description='" + description + '\'' +
+                ", num_ratings=" + num_ratings +
+                ", user_rating=" + user_rating +
+                ", cast=" + cast +
+                ", listed_in=" + listed_in +
+                ", directores=" + directores +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Title title1 = (Title) o;
-        return id == title1.id && release_year == title1.release_year && show_id.equals(title1.show_id) && type.equals(title1.type) && title.equals(title1.title) && Objects.equals(country, title1.country) && Objects.equals(date_added, title1.date_added) && Objects.equals(rating, title1.rating) && Objects.equals(duration, title1.duration) && Objects.equals(description, title1.description);
+        Title title = (Title) o;
+        return id == title.id && num_ratings == title.num_ratings && Float.compare(title.user_rating, user_rating) == 0 && Objects.equals(name, title.name) && Objects.equals(date_added, title.date_added) && Objects.equals(release_year, title.release_year) && Objects.equals(rating, title.rating) && Objects.equals(duration, title.duration) && Objects.equals(description, title.description) && Objects.equals(cast, title.cast) && Objects.equals(listed_in, title.listed_in) && Objects.equals(directores, title.directores);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, show_id, type, title, country, date_added, release_year, rating, duration, description);
+        return Objects.hash(id, name, date_added, release_year, rating, duration, description, num_ratings, user_rating, cast, listed_in, directores);
     }
+
 }
