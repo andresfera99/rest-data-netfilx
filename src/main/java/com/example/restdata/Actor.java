@@ -23,8 +23,7 @@ public class Actor {
     @ManyToMany(mappedBy = "cast")
     private List<Title> titles;
 
-    public Actor(int id, String name) {
-        this.id = id;
+    public Actor(String name) {
         this.name = name;
     }
 

@@ -32,7 +32,7 @@ public class Title {
 
     private String country;
 
-    private Date date_added;
+    private String date_added;
 
     @Range(min = 1, max = 2022, message = "release_year must be lower or equal to 2022")
     private int release_year;
@@ -42,6 +42,10 @@ public class Title {
     private String duration;
 
     private String description;
+
+    private int num_ratings;
+
+    private float user_rating;
 
     @ManyToMany
     @JoinTable(name = "title_actor",
@@ -77,8 +81,7 @@ public class Title {
 
     }
 
-    public Title(int id, String show_id, String type, String title, String country, Date date_added, int release_year, String rating, String duration, String description) {
-        this.id = id;
+    public Title(String show_id, String type, String title, String country, String date_added, int release_year, String rating, String duration, String description, int num_ratings, float user_rating) {
         this.show_id = show_id;
         this.type = type;
         this.title = title;
@@ -88,6 +91,8 @@ public class Title {
         this.rating = rating;
         this.duration = duration;
         this.description = description;
+        this.num_ratings = num_ratings;
+        this.user_rating = user_rating;
     }
 
     public int getId() {
@@ -100,6 +105,27 @@ public class Title {
 
     public String getShow_id() {
         return show_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Title{" +
+                "id=" + id +
+                ", show_id='" + show_id + '\'' +
+                ", type='" + type + '\'' +
+                ", title='" + title + '\'' +
+                ", country='" + country + '\'' +
+                ", date_added=" + date_added +
+                ", release_year=" + release_year +
+                ", rating='" + rating + '\'' +
+                ", duration='" + duration + '\'' +
+                ", description='" + description + '\'' +
+                ", num_ratings=" + num_ratings +
+                ", user_rating=" + user_rating +
+                ", cast=" + cast +
+                ", listed_in=" + listed_in +
+                ", directores=" + directores +
+                '}';
     }
 
     public void setShow_id(String show_id) {
@@ -130,11 +156,11 @@ public class Title {
         this.country = country;
     }
 
-    public Date getDate_added() {
+    public String getDate_added() {
         return date_added;
     }
 
-    public void setDate_added(Date date_added) {
+    public void setDate_added(String date_added) {
         this.date_added = date_added;
     }
 
@@ -192,22 +218,6 @@ public class Title {
 
     public void setDirectores(List<Director> directores) {
         this.directores = directores;
-    }
-
-    @Override
-    public String toString() {
-        return "Title{" +
-                "id=" + id +
-                ", show_id='" + show_id + '\'' +
-                ", type='" + type + '\'' +
-                ", title='" + title + '\'' +
-                ", country='" + country + '\'' +
-                ", date_added=" + date_added +
-                ", release_year=" + release_year +
-                ", rating='" + rating + '\'' +
-                ", duration='" + duration + '\'' +
-                ", description='" + description + '\'' +
-                '}';
     }
 
     @Override

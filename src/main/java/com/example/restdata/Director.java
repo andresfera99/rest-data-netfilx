@@ -22,8 +22,7 @@ public class Director {
     @ManyToMany(mappedBy = "directores")
     private List<Title> titles;
 
-    public Director(int id, String name) {
-        this.id = id;
+    public Director(String name) {
         this.name = name;
     }
 

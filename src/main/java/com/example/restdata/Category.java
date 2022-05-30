@@ -22,8 +22,7 @@ public class Category {
     @ManyToMany(mappedBy = "listed_in")
     private List<Title> titles;
 
-    public Category(int id, String name) {
-        this.id = id;
+    public Category(String name) {
         this.name = name;
     }
 
