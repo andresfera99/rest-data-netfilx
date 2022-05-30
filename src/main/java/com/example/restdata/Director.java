@@ -47,23 +47,25 @@ public class Director {
     }
 
     @Override
+    public String toString() {
+        return "Director{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", titles=" + titles +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Director actor = (Director) o;
-        return id == actor.id && name.equals(actor.name);
+        Director director = (Director) o;
+        return id == director.id && Objects.equals(name, director.name) && Objects.equals(titles, director.titles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, titles);
     }
 
-    @Override
-    public String toString() {
-        return "Actor{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }
